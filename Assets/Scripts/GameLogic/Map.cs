@@ -1,8 +1,5 @@
 using GameLogic;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Map
@@ -12,23 +9,48 @@ public class Map
 
 	public int Width { get; private set; }
     public int Height { get; private set; }
+    public bool Loop
+	{
+		get => _loop;
+		private set
+		{
+			_loop = value;
+			InitAllNeigbours();
+		}
+	}
+
+	private bool _loop;
 
     public Cell? this[Vector2Int index]
 	{
 		get
 		{
 			var (x, y) = (index.x, index.y);
-			if (x < 0 || x >= Width)
-				return null;
-			if (y < 0 || y >= Height)
-				return null;
+			if (!Loop)
+			{		
+				if (x < 0 || x >= Width)
+					return null;
+				if (y < 0 || y >= Height)
+					return null;
+			}
+
+			while (x < 0)
+				x += Width;
+			while (x >= Width)
+				x -= Width;
+
+			while (y < 0)
+				y += Height;
+			while (y >= Height)
+				y -= Height;
 
 			return _grid[x, y];
 		}
+
 		private set => _grid[index.x, index.y] = value;
 	}
 
-	public Map(int width, int height)
+	public Map(int width, int height, bool loop = true)
 	{
         Width = width;
         Height = height;
@@ -38,10 +60,8 @@ public class Map
             for (int y = 0; y < Height; y++)
 				_grid[x, y] = new Cell(this, new Vector2Int(x, y));
 
-        for (int x = 0; x < Width; x++)
-            for (int y = 0; y < Height; y++)
-				_grid[x, y].InitNeighbours();
-    }
+		InitAllNeigbours();
+	}
 
 	public Map Clone()
 	{
@@ -64,4 +84,11 @@ public class Map
 		}
         return builder.ToString();
     }
+
+	private void InitAllNeigbours()
+	{
+		for (int x = 0; x < Width; x++)
+			for (int y = 0; y < Height; y++)
+				_grid[x, y].InitNeighbours();
+	}
 }

@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 96078925}
   - component: {fileID: 96078927}
   - component: {fileID: 96078926}
-  - component: {fileID: 96078928}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -268,22 +267,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &96078928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96078924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013fc3b892f53d84b8ccb79f872c7357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tileWhite: {fileID: 11400000, guid: 392737940ec741244a7be1f5b44b1da3, type: 2}
-  _tileBlack: {fileID: 11400000, guid: 68b7fa535f25a0041a5f9d72cc9531ee, type: 2}
-  _width: 20
-  _height: 20
 --- !u!1 &278779461
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +413,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -496,13 +480,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416ce91e7d5c1b64fb0f2388ceb279cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grid: {fileID: 916743930}
+  _movementSpeed: 5
+  _zoomSpeed: 0.3
 --- !u!1 &590701062
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +528,7 @@ Grid:
   m_GameObject: {fileID: 590701062}
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0.05, y: 0.05, z: 0}
+  m_CellGap: {x: 0.1, y: 0.1, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &590701064
@@ -632,7 +631,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 96078928}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Grid, Assembly-CSharp
         m_MethodName: OnNextClick
         m_Mode: 1
@@ -682,6 +681,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896695961}
   m_CullTransparentMesh: 1
+--- !u!1 &916743928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916743929}
+  - component: {fileID: 916743930}
+  - component: {fileID: 916743931}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &916743929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916743928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &916743930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916743928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013fc3b892f53d84b8ccb79f872c7357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tilemap: {fileID: 96078927}
+  _aliveTile: {fileID: 11400000, guid: 68b7fa535f25a0041a5f9d72cc9531ee, type: 2}
+  _diedTile: {fileID: 11400000, guid: 392737940ec741244a7be1f5b44b1da3, type: 2}
+  _defaultWidth: 20
+  _defaultHeight: 20
+--- !u!114 &916743931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916743928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cb80a05c02a204392805c649924156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grid: {fileID: 916743930}
 --- !u!1 &1060695702
 GameObject:
   m_ObjectHideFlags: 0
