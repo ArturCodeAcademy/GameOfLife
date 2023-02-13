@@ -282,8 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tileWhite: {fileID: 11400000, guid: 392737940ec741244a7be1f5b44b1da3, type: 2}
   _tileBlack: {fileID: 11400000, guid: 68b7fa535f25a0041a5f9d72cc9531ee, type: 2}
-  _width: 2
-  _height: 2
+  _width: 20
+  _height: 20
 --- !u!1 &278779461
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +472,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -496,7 +496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 5, z: -10}
+  m_LocalPosition: {x: 10, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

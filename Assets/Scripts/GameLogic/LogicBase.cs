@@ -32,13 +32,14 @@ namespace GameLogic
             for (int x = 0; x < Map.Width; x++)
                 for (int y = 0; y < Map.Height; y++)
                 {
-                    Cell cell = newMap[new Vector2Int(x, y)];
-                    cell.InitNeighbours();
+                    Cell newCell = newMap[new Vector2Int(x, y)];
+                    Cell oldCell = Map[new Vector2Int(x, y)];
+					newCell.InitNeighbours();
 
-                    if (cell.IsAlive)
-                        cell.IsAlive = r_stayAlivePredictor(cell);
+                    if (newCell.IsAlive)
+						newCell.IsAlive = r_stayAlivePredictor(oldCell);
                     else
-                        cell.IsAlive = r_changeToAlivePredictor(cell);
+						newCell.IsAlive = r_changeToAlivePredictor(oldCell);
                 }
             Map = newMap;
             return newMap;
