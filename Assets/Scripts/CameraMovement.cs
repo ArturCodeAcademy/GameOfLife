@@ -22,8 +22,7 @@ public class CameraMovement : MonoBehaviour
 
 	private void Start()
 	{
-		_maxSize = (_camera.aspect >= 1 ? _grid.UpBorder : _grid.RightBorder);
-		_camera.orthographicSize = _maxSize;
+		ResetCamera();
 	}
 
 	private void LateUpdate()
@@ -55,5 +54,15 @@ public class CameraMovement : MonoBehaviour
 		else
 			newPos.y = 0;
 		transform.position = newPos;
+	}
+
+	public void ResetCamera()
+	{
+		transform.position = Vector3.back * 10;
+		if (_camera.aspect > _grid.RightBorder / _grid.UpBorder)
+			_maxSize = _grid.UpBorder;
+		else
+			_maxSize = _grid.RightBorder / _camera.aspect;
+		_camera.orthographicSize = _maxSize;
 	}
 }

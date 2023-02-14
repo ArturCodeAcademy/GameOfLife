@@ -77,6 +77,11 @@ public class Grid : MonoBehaviour
 		_tilemap.SetTile(coord3d, cell.IsAlive ? _aliveTile : _diedTile);
 	}
 
+	public void TakeStep()
+	{		
+		Draw(_logic.GetNextMap());
+	}
+
 	private void Init(Map map)
     {
         for (int x = 0; x < map.Width; x++)
