@@ -1569,8 +1569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grid: {fileID: 916743930}
-  _movementSpeed: 15
-  _zoomSpeed: 0.3
+  _movementSpeed: 5
+  _zoomSpeed: 0.05
 --- !u!1 &535505003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -45.00006, y: -20}
+  m_AnchoredPosition: {x: -44.99994, y: -20}
   m_SizeDelta: {x: -110, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &845016987
@@ -2794,7 +2794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -45.00006, y: -20}
+  m_AnchoredPosition: {x: -44.99994, y: -20}
   m_SizeDelta: {x: -110, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &883102428

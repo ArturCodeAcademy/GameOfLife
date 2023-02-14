@@ -52,7 +52,7 @@ public class Grid : MonoBehaviour
 			ChangeToAlivePredictorRule
 		);
 		Init(_logic.Map);
-		Draw(_logic.Map);
+		Draw(_logic.Map, null);
 
         UpBorder = (height * CELL_SIZE / 2);
 		DownBorder = -(height * CELL_SIZE / 2);
@@ -78,8 +78,9 @@ public class Grid : MonoBehaviour
 	}
 
 	public void TakeStep()
-	{		
-		Draw(_logic.GetNextMap());
+	{	
+		Map old = _logic.Map.Clone();
+		Draw(_logic.GetNextMap(), old);
 	}
 
 	private void Init(Map map)
@@ -89,14 +90,17 @@ public class Grid : MonoBehaviour
                 _tilemap.SetTile(new Vector3Int(x, y), _diedTile);
     }
 
-    private void Draw(Map map)
+    private void Draw(Map map, Map oldMap)
     {
         for (int x = 0; x < map.Width; x++)
             for (int y = 0; y < map.Height; y++)
             {
                 Vector2Int pos2d = new Vector2Int(x, y);
-                Vector3Int pos3d = new Vector3Int(x, y);
-                _tilemap.SetTile(pos3d, map[pos2d].IsAlive? _aliveTile : _diedTile);
+				if (map[pos2d].IsAlive != (oldMap?[pos2d].IsAlive ?? !map[pos2d].IsAlive))
+				{
+					Vector3Int pos3d = new Vector3Int(x, y);
+					_tilemap.SetTile(pos3d, map[pos2d].IsAlive ? _aliveTile : _diedTile);
+				}
             }
     }
 }

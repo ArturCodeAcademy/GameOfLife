@@ -28,19 +28,28 @@ namespace GameLogic
         public Map GetNextMap()
         {
             Map newMap = Map.Clone();
-
+            Task[] tasks = new Task[Map.Width];
             for (int x = 0; x < Map.Width; x++)
-                for (int y = 0; y < Map.Height; y++)
+            {
+                int xIndex = x;
+                tasks[xIndex] = new Task(() =>
                 {
-                    Cell newCell = newMap[new Vector2Int(x, y)];
-                    Cell oldCell = Map[new Vector2Int(x, y)];
-					newCell.InitNeighbours();
+                    for (int y = 0; y < Map.Height; y++)
+                    {
+                        Cell newCell = newMap[new Vector2Int(xIndex, y)];
+                        Cell oldCell = Map[new Vector2Int(xIndex, y)];
+                        newCell.InitNeighbours();
 
-                    if (newCell.IsAlive)
-						newCell.IsAlive = r_stayAlivePredictor(oldCell);
-                    else
-						newCell.IsAlive = r_changeToAlivePredictor(oldCell);
-                }
+                        if (newCell.IsAlive)
+                            newCell.IsAlive = r_stayAlivePredictor(oldCell);
+                        else
+                            newCell.IsAlive = r_changeToAlivePredictor(oldCell);
+                    }
+                });
+				tasks[xIndex].Start();
+
+			}
+            Task.WaitAll(tasks);
             Map = newMap;
             return newMap;
         }

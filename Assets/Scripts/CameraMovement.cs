@@ -32,14 +32,14 @@ public class CameraMovement : MonoBehaviour
 		if (scrollDelta != 0)
 		{
 			float zoom = _camera.orthographicSize;
-			zoom += scrollDelta * _zoomSpeed;
+			zoom += scrollDelta * _zoomSpeed * _camera.orthographicSize;
 			_camera.orthographicSize = Mathf.Clamp(zoom, MIN_SIZE, _maxSize);
 		}		
 
 		// Movement
 		Vector3 transition = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		transition.Normalize();
-		transition *= _movementSpeed * Time.deltaTime;
+		transition *= _movementSpeed * Time.deltaTime * _camera.orthographicSize;
 
 		float width = _camera.aspect * _camera.orthographicSize;
 		float height = _camera.orthographicSize;

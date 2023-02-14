@@ -54,6 +54,7 @@ public class Map
 	{
         Width = width;
         Height = height;
+		_loop = loop;
         _grid = new Cell[Width, Height];
 
 		for (int x = 0; x < Width; x++)
